@@ -9,7 +9,7 @@ import java.util.concurrent.TimeUnit
 
 object ApiClient {
 
-    val BASE_URL = "http://api.themoviedb.org/3/"
+    val BASE_URL = "https://reqres.in"
     private var retrofit: Retrofit? = null
 
     val client: Retrofit?
