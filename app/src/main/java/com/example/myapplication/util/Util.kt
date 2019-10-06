@@ -3,7 +3,13 @@ package com.example.myapplication.util
 import android.app.AlertDialog
 import android.content.Context
 import android.view.LayoutInflater
-
+import androidx.core.content.ContextCompat.getSystemService
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
+import android.net.NetworkInfo
+import android.view.View
+import androidx.core.content.ContextCompat.getSystemService
+import com.google.android.material.snackbar.Snackbar
 
 object Util {
 
@@ -21,5 +27,25 @@ object Util {
     fun hideProgressDialog() {
         dialog!!.dismiss()
     }
+
+    fun isNetworkConnected(context: Context): Boolean {
+        val connectivityManager =
+            context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        return if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+            val network = connectivityManager.activeNetwork
+            val capabilities = connectivityManager.getNetworkCapabilities(network)
+            capabilities != null && capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)
+        } else {
+            connectivityManager.activeNetworkInfo.type == ConnectivityManager.TYPE_WIFI
+
+        }
+    }
+
+    fun showSnackBar(view: View, message:String) {
+        val snackbar = Snackbar
+            .make(view, message, Snackbar.LENGTH_LONG)
+        snackbar.show()
+        }
+
 
 }

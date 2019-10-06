@@ -1,5 +1,6 @@
 package com.example.myapplication.model
-import Data
+
+import com.example.myapplication.database.User
 import com.google.gson.annotations.SerializedName
 
 /*
@@ -20,5 +21,5 @@ data class Response (
 	@SerializedName("per_page") val per_page : Int,
 	@SerializedName("total") val total : Int,
 	@SerializedName("total_pages") val total_pages : Int,
-	@SerializedName("data") val data : List<Data>
+	@SerializedName("data") val data : List<User>
 )
