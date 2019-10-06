@@ -6,6 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".ui.ImagePickerActivity">
 
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/etDate"
+        android:text="Enter date"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/imgChooseImage"
         android:layout_width="wrap_content"

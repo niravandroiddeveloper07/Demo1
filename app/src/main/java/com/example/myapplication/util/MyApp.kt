@@ -5,6 +5,7 @@ import android.content.SharedPreferences
 import com.example.android.roomwordssample.UserDao
 import com.example.myapplication.database.UserDatabase
 import com.example.myapplication.util.PreferenceHelper.PREFCUSTOM
+import com.miguelbcr.ui.rx_paparazzo2.RxPaparazzo
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 
@@ -15,9 +16,8 @@ class MyApp : Application() {
 
         userDatabase= UserDatabase.getDatabase(this, CoroutineScope(Dispatchers.IO))
         userDao= userDatabase.wordDao()
-
         pref= PreferenceHelper.customPrefs(this,PREFCUSTOM)
-
+        RxPaparazzo.register(this);
     }
 
     companion object
@@ -25,6 +25,5 @@ class MyApp : Application() {
         lateinit var userDao: UserDao
         lateinit var userDatabase: UserDatabase
         lateinit var pref:SharedPreferences
-
     }
 }

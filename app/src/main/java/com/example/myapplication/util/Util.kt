@@ -36,7 +36,7 @@ object Util {
             val capabilities = connectivityManager.getNetworkCapabilities(network)
             capabilities != null && capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)
         } else {
-            connectivityManager.activeNetworkInfo.type == ConnectivityManager.TYPE_WIFI
+            connectivityManager.activeNetworkInfo.type == ConnectivityManager.TYPE_WIFI ||  connectivityManager.activeNetworkInfo.type == ConnectivityManager.TYPE_MOBILE
 
         }
     }

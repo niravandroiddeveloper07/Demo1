@@ -2,38 +2,46 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
     app:cardUseCompatPadding="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_marginStart="5dp">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/imgProfilke"
             android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            app:50dp="parent"
+            android:layout_height="50dp"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvName"
+            android:text="test"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
-            app:layout_constraintEnd_toStartOf="@+id/imgProfilke"
+            app:layout_constraintStart_toEndOf="@+id/imgProfilke"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvEmail"
+            android:text="sdsd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
-            app:layout_constraintStart_toStartOf="@+id/imgProfilke"
+            app:layout_constraintStart_toEndOf="@+id/imgProfilke"
             app:layout_constraintTop_toBottomOf="@+id/tvName" />
 
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtDelete"
+            android:text="Delete"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

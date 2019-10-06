@@ -39,12 +39,16 @@ interface UserDao {
     // Always holds/caches latest version of data. Notifies its active observers when the
     // data has changed. Since we are getting all the contents of the database,
     // we are notified whenever any of the database contents have changed.
-    @Query("SELECT * from user_table")
-    fun getUserList(): LiveData<List<User>>
+     @Query("SELECT * from user_table")
+     fun getUserList(): LiveData<List<User>>
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+     @Insert(onConflict = OnConflictStrategy.IGNORE)
      fun insert(user: User)
 
-    @Query("DELETE FROM user_table")
-    suspend fun deleteAll()
+     @Query("DELETE FROM user_table WHERE id= :userId")
+     fun deleteById(userId:Int)
+
+    @Query("SELECT * FROM user_table WHERE first_name+last_name LIKE:search")
+    fun getSearchResult(search:String): LiveData<List<User>>
+
 }

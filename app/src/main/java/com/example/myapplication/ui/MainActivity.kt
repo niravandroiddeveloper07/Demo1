@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import com.example.myapplication.R
 import com.example.myapplication.util.PermisionHelper
 import com.example.myapplication.network.ApiClient
 import com.example.myapplication.network.ApiInterface
@@ -18,19 +19,25 @@ import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import android.R.attr.data
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
-import com.miguelbcr.ui.rx_paparazzo2.RxPaparazzo
 
 
 
 
 class MainActivity : AppCompatActivity(),View.OnClickListener {
+
+    override fun onStart() {
+        super.onStart()
+    }
+
     override fun onClick(p0: View?) {
         when(p0!!.id)
         {
-            com.example.myapplication.R.id.txtCenter->
+            R.id.txtImagePick->
+            {
+                startActivity(Intent(this@MainActivity, ImagePickerActivity::class.java))
+
+            }
+            R.id.txtCenter->
             {
 
                 PermisionHelper.askPermision(
@@ -58,8 +65,9 @@ class MainActivity : AppCompatActivity(),View.OnClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(com.example.myapplication.R.layout.activity_main)
-
+        setContentView(R.layout.activity_main)
+        txtImagePick.setOnClickListener(this)
+        txtCenter.setOnClickListener(this)
 
     }
 
@@ -98,6 +106,20 @@ class MainActivity : AppCompatActivity(),View.OnClickListener {
         grantResults: IntArray
     ) {
         PermisionHelper.onRequestPermissionsResult(requestCode, permissions, grantResults)
+    }
+
+    override fun onStop() {
+        super.onStop()
+    }
+    override fun onRestart() {
+        super.onRestart()
+    }
+
+    override fun onResume() {
+        super.onResume()
+    }
+    override fun onPause() {
+        super.onPause()
     }
 
 }

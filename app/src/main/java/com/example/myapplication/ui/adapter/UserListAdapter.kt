@@ -12,7 +12,7 @@ import com.example.myapplication.database.User
 import kotlinx.android.synthetic.main.item_user_list.view.*
 import java.lang.StringBuilder
 
-class UserListAdapter(private val items : ArrayList<User>, private val context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class UserListAdapter(private val items : ArrayList<User>, private val context: Context,val myCallback: (Int) -> Unit) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return ViewHolder(
@@ -36,7 +36,9 @@ class UserListAdapter(private val items : ArrayList<User>, private val context: 
 
         holder.itemView.tvName.text=StringBuilder().append(items.get(position).first_name).append(" ").append(items.get(position).last_name)
         holder.itemView.tvEmail.text=items.get(position).email
-
+        holder.itemView.txtDelete.setOnClickListener {
+         myCallback(position)
+        }
     }
 
     class ViewHolder (view: View) : RecyclerView.ViewHolder(view) {
