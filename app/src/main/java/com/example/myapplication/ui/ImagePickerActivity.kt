@@ -13,6 +13,7 @@ import kotlinx.android.synthetic.main.activity_image_picker.*
 
 import java.util.*
 import android.app.DatePickerDialog
+import com.example.myapplication.util.DateUtil
 
 import java.text.SimpleDateFormat
 
@@ -20,38 +21,38 @@ import java.text.SimpleDateFormat
 class ImagePickerActivity : AppCompatActivity(), View.OnClickListener {
 
     private val myCalendar = Calendar.getInstance()
-
+    lateinit var date:DatePickerDialog
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_image_picker)
         txtAdd.setOnClickListener(this)
 
-
-        val date: DatePickerDialog.OnDateSetListener =
+         date = DatePickerDialog(
+            this@ImagePickerActivity,
             DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
-                // TODO Auto-generated method stub
                 myCalendar.set(Calendar.YEAR, year)
                 myCalendar.set(Calendar.MONTH, monthOfYear)
                 myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+                date.dismiss()
                 updateLabel()
 
-            }
+            },
+            myCalendar
+                .get(Calendar.YEAR),
+            myCalendar.get(Calendar.MONTH),
+            myCalendar.get(Calendar.DAY_OF_MONTH)
+        )
 
         etDate.setOnTouchListener { view, _ ->
-            DatePickerDialog(
-                this@ImagePickerActivity, date, myCalendar
-                    .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
-                myCalendar.get(Calendar.DAY_OF_MONTH)
-            ).show()
+            date.show()
             return@setOnTouchListener false
         }
 
     }
 
     private fun updateLabel() {
-        val myFormat = "MM/dd/yy" //In which you need put here
-        val sdf = SimpleDateFormat(myFormat, Locale.US)
-        etDate.setText(sdf.format(myCalendar.time))
+
+        etDate.setText(DateUtil.formatDate(myCalendar.time))
     }
 
     override fun onClick(p0: View?) {
@@ -66,33 +67,11 @@ class ImagePickerActivity : AppCompatActivity(), View.OnClickListener {
                         if (it.resultCode() == RESULT_OK) {
                             Glide.with(applicationContext)
                                 .load(it.data().file)
-                                .apply(RequestOptions.circleCropTransform())
                                 .into(imgChooseImage);
                         }
                     }
             }
         }
     }
-
-    override fun onResume() {
-        super.onResume()
-    }
-
-    override fun onStop() {
-        super.onStop()
-    }
-
-    override fun onPause() {
-        super.onPause()
-    }
-
-    override fun onRestart() {
-        super.onRestart()
-    }
-
-    override fun onStart() {
-        super.onStart()
-    }
-
 
 }

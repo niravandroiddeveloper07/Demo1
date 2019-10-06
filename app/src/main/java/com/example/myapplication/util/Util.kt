@@ -34,18 +34,24 @@ object Util {
         return if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
             val network = connectivityManager.activeNetwork
             val capabilities = connectivityManager.getNetworkCapabilities(network)
-            capabilities != null && capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)
+            if (capabilities != null) {
+                capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) || capabilities.hasTransport(
+                    NetworkCapabilities.TRANSPORT_CELLULAR
+                )
+            } else {
+                return false
+            }
         } else {
-            connectivityManager.activeNetworkInfo.type == ConnectivityManager.TYPE_WIFI ||  connectivityManager.activeNetworkInfo.type == ConnectivityManager.TYPE_MOBILE
+            connectivityManager.activeNetworkInfo.type == ConnectivityManager.TYPE_WIFI || connectivityManager.activeNetworkInfo.type == ConnectivityManager.TYPE_MOBILE
 
         }
     }
 
-    fun showSnackBar(view: View, message:String) {
+    fun showSnackBar(view: View, message: String) {
         val snackbar = Snackbar
             .make(view, message, Snackbar.LENGTH_LONG)
         snackbar.show()
-        }
+    }
 
 
 }

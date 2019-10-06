@@ -49,7 +49,7 @@ class MainActivity : AppCompatActivity(),View.OnClickListener {
                             if (Util.isNetworkConnected(this@MainActivity)) {
                                 callApi()
                             } else {
-                                Util.showSnackBar(root, getString(com.example.myapplication.R.string.check))
+                                Util.showSnackBar(root, getString(R.string.check))
                             }
                             Toast.makeText(applicationContext, "grant", Toast.LENGTH_SHORT).show()
                         }
