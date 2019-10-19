@@ -29,7 +29,7 @@ class ImagePickerActivity : AppCompatActivity(), View.OnClickListener {
 
          date = DatePickerDialog(
             this@ImagePickerActivity,
-            DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+            DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
                 myCalendar.set(Calendar.YEAR, year)
                 myCalendar.set(Calendar.MONTH, monthOfYear)
                 myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
