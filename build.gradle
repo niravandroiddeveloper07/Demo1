@@ -29,7 +29,6 @@ allprojects {
 ext {
     roomVersion = '2.1.0-beta01'
     coroutines = '1.2.0'
-
 }
 
 

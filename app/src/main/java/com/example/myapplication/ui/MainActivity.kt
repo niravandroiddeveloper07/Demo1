@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import com.example.myapplication.R
+import com.example.myapplication.model.UserListResponse
 import com.example.myapplication.util.PermisionHelper
 import com.example.myapplication.network.ApiClient
 import com.example.myapplication.network.ApiInterface
@@ -24,6 +25,7 @@ import retrofit2.Response
 
 
 class MainActivity : AppCompatActivity(),View.OnClickListener {
+
 
     override fun onStart() {
         super.onStart()
@@ -76,10 +78,10 @@ class MainActivity : AppCompatActivity(),View.OnClickListener {
         val apiInterface = ApiClient.client!!.create(ApiInterface::class.java)
         val call = apiInterface.doGetUserList("1")
 
-        call.enqueue(object : Callback<com.example.myapplication.model.Response> {
+        call.enqueue(object : Callback<UserListResponse> {
             override fun onResponse(
-                call: Call<com.example.myapplication.model.Response>,
-                response: Response<com.example.myapplication.model.Response>
+                call: Call<UserListResponse>,
+                response: Response<UserListResponse>
             ) {
                 Util.hideProgressDialog()
                 val userlist = response.body()!!.data
@@ -92,7 +94,7 @@ class MainActivity : AppCompatActivity(),View.OnClickListener {
             }
 
             override fun onFailure(
-                call: Call<com.example.myapplication.model.Response>,
+                call: Call<UserListResponse>,
                 t: Throwable
             ) {
             }

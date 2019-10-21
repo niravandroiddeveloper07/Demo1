@@ -22,6 +22,7 @@ class ImagePickerActivity : AppCompatActivity(), View.OnClickListener {
 
     private val myCalendar = Calendar.getInstance()
     lateinit var date:DatePickerDialog
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_image_picker)
